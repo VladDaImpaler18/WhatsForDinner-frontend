@@ -1,10 +1,10 @@
-function RecipeHistoryReducer(state = { item: [] }, action) {
+function RecipeReducer(state = { item: [] }, action) {
     switch (action.type) {
-        
+
 
 
         default:
             return state;
     }
 }
-export default RecipeHistoryReducer
+export default RecipeReducer

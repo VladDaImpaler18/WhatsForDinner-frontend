@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import RecipeReducer from './reducers/RecipeHistoryReducer.js';
 
 const store = createStore(
-  reducerThing,
+  RecipeReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
