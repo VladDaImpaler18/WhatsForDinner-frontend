@@ -1,16 +1,16 @@
-function RecipeReducer(state = { ingredient: '', loading: false }, action) {
+function RecipeReducer(state = { recipe: '', loading: false }, action) {
     switch (action.type) {
         case 'LOADING_HISTORY':
             return {
                 ...state,
-                ingredient: [...state.ingredient],
+                recipe: [...state.recipe],
                 loading: true
             }
         
         case 'ADD_RECIPE':
             return {
                 ...state,
-                ingredient = state.ingredient.concat(action.ingredient),
+                recipe: state.recipe.concat(action.recipe),
                 loading: false
             }
         
@@ -18,6 +18,20 @@ function RecipeReducer(state = { ingredient: '', loading: false }, action) {
             return {
                 ...state,
                 ingredient: '',
+                loading: false
+            }
+
+        case 'SELECT_RECIPE':
+            debugger
+            return {
+                ...state,
+                loading: false,
+            }
+        
+        case 'DELETE_RECIPE':
+            return {
+                ...state,
+                recipe: state.recipe.filter(reciple => recipe != action.recipe),
                 loading: false
             }
         default:

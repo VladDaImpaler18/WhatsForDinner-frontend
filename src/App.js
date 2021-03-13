@@ -19,6 +19,7 @@ function App() {
 
   const handleOnSelect = (item) => {
     // the item selected
+    debugger
     console.log(item)
   }
 
