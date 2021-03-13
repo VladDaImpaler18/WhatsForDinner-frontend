@@ -17,7 +17,7 @@ function RecipeReducer(state = { recipe: '', loading: false }, action) {
         case 'CLEAR_HISTORY':
             return {
                 ...state,
-                ingredient: '',
+                recipe: '',
                 loading: false
             }
 
@@ -31,7 +31,7 @@ function RecipeReducer(state = { recipe: '', loading: false }, action) {
         case 'DELETE_RECIPE':
             return {
                 ...state,
-                recipe: state.recipe.filter(reciple => recipe != action.recipe),
+                recipe: state.recipe.filter(r => r != action.recipe),
                 loading: false
             }
         default:
