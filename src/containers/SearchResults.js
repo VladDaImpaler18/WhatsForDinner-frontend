@@ -6,7 +6,11 @@ import React, { useState } from 'react'
 
 function SearchResults(){
 
-
+    return(
+        <div>
+            //from the state, loop through and display each item individually
+        </div>
+    )
 }
 
 export default SearchResults
