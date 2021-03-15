@@ -1,3 +1,4 @@
+/* Legacy Way
 function RecipeReducer(state = { recipe: '', loading: false }, action) {
     switch (action.type) {
         case 'LOADING_HISTORY':
@@ -38,4 +39,5 @@ function RecipeReducer(state = { recipe: '', loading: false }, action) {
             return state;
     }
 }
+*/
 export default RecipeReducer
