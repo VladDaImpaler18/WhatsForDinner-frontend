@@ -31,7 +31,7 @@ function RecipeReducer(state = { recipe: '', loading: false }, action) {
         case 'DELETE_RECIPE':
             return {
                 ...state,
-                recipe: state.recipe.filter(r => r != action.recipe),
+                recipe: state.recipe.filter(r => r !== action.recipe),
                 loading: false
             }
         default:
