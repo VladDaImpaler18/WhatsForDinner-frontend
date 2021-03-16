@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-
+import "./SearchResult.css"
 //uses the results from SearchForm
 
 //from the state, loop through and display each item individually
 
-function SearchResults(){
+function SearchResults(props){
 
     return(
-        <div>
-            //from the state, loop through and display each item individually
+        <div class="container-root">
+            
         </div>
     )
 }
