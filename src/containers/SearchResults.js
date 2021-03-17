@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import "./SearchResult.css"
+import "./SearchResults.css"
 //uses the results from SearchForm
 
 //from the state, loop through and display each item individually

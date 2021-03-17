@@ -7,7 +7,7 @@ const Recipe = props => {
     const imageLocation = "../../images/".concat(imageName);
 
     return (
-        <div key={props.id} class="recipe">
+        <div key={props.id} class="container-recipe">
             <img src={imageLocation} alt="Thumbnail" />
             <p>{props.title}</p>
         </div>
