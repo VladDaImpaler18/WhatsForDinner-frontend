@@ -1,6 +1,5 @@
-const initialState = { recipes: [], loading: false};
-const RecipeReducer = (state, action) =>{
-    debugger //check exactly how action is structured
+const RecipeReducer = (state = {recipes: [], loading: false}, action) =>{
+    //debugger //check exactly how action is structured
     switch (action) {
         case 'LOADING_HISTORY':
             return {...state,  recipes: [...state.recipes], loading:true};
@@ -8,10 +7,11 @@ const RecipeReducer = (state, action) =>{
             return {...state, recipes: state.recipes.concat(action.recipe), loading: false};
         case 'CLEAR_HISTORY': return {...state, recipes: [], loading: false};
         case 'SELECT_RECIPE':
-            debugger
+            //debugger
             return {...state, loading: false}
         case 'DELETE_RECIPE':
             return {...state, recipes: state.recipes.filter(r => r !== action.recipe), loading: false };
+        default: return state;
     }
 }
 /* Legacy Way

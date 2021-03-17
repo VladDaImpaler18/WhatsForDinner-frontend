@@ -1,6 +1,10 @@
 .container-root {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     flex-wrap: nowrap;
     justify-content: flex-start;
 }
+/* Defaults
+flexDirection: column (isntead of row)
+alignContent: flex-start (instead of stretch)
+flexShrink: 0 (instead of 1) */

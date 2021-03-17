@@ -1,27 +1,20 @@
 import React, { useState } from 'react'
-import "./SearchResult.css"
+import "./SearchResults.css"
+import Recipe from '../components/Recipe';
 //uses the results from SearchForm
 
-//from the state, loop through and display each item individually
-
+//from the props, loop through and display each item individually
+//props.recipes
 function SearchResults(props){
 
+    let ingredient = Object.keys(props.recipes)[0] //for now
+    let recipes = props.recipes[ingredient];
+    const listRecipes = recipes.map(recipe => <Recipe recipe={ recipe } />);
     return(
-        <div class="container-root">
-            
+        <div className="container-root">
+            {  }
         </div>
     )
 }
 
 export default SearchResults
-
-//maybe pass state to props
-/*
-const mapStateToProps = state => {
-    return {
-        searchResults: state.results
-        loading: state.loading
-    }
-}
-export default connect(mapStateToProps, {//action command})(SearchResults)
-*/
