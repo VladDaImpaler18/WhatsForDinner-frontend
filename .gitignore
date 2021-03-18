@@ -24,4 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 src/.cache/*
-src/images/*.jpg
+public/img/*.jpg
