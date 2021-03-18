@@ -4,8 +4,7 @@ import "./Recipe.css"
 const Recipe = ({recipe}) => {
     const str = recipe.thumb.split("/");
     const imageName = str[str.length-1];
-    const imageLocation = "../../images/".concat(imageName);
-
+    const imageLocation = "/img/".concat(imageName);
     return (
         <div key={recipe.id} class="container-recipe">
             <img src={imageLocation} alt="Thumbnail" />
