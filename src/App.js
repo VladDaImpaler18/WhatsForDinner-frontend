@@ -10,24 +10,7 @@ const initialState = {recipes: [], loading: false}
 function App() {
   const [recipes, dispatch] = useReducer(RecipeReducer, initialState)
   const [ingredient, setIngredient] = useState('')
-//   export const fetchUsers = () => {
-//     return (dispatch) => {
-//         dispatch({ type: LOADING_DATA });
-//         
-//             
-//         })
-//     };
-// }
-  const fetchHistory = () => { 
-    return(dispatch) => {
-    dispatch({ type: 'LOADING_DATA' });
-    fetch('http://localhost:3001/cookbook')
-         .then(response => response.json())
-         .then(recipeData => {
-             dispatch({ type: 'ADD_RECIPE', recipes: recipeData })
-          })
-    };
-  }
+
   function loadTestData(json){ //this is totally an action!
     let ingredient = Object.keys(JSON.parse(json))[0] //for now
     setIngredient(ingredient)
@@ -35,7 +18,7 @@ function App() {
     recipes.forEach( recipe => dispatch({ type: 'ADD_RECIPE', recipe }))
   }
   useEffect(() => { loadTestData(json) }, []);
-  //debugger;
+
 //Here I should have state of searchResults (to pass down)
 //Here I should have functions on handleOnSubmit to pass down
   return (
