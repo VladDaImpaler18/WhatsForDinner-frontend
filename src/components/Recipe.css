@@ -4,9 +4,21 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
+    width: 90%;
 }
 
 div.container-recipe > img {
     height: 75px;
     width: 75px;
+    padding-right: 8px;
 }
+
+div > button {
+    color: #800000;
+    order: 99;
+}
+
+/* Defaults
+flexDirection: column (isntead of row)
+alignContent: flex-start (instead of stretch)
+flexShrink: 0 (instead of 1) */

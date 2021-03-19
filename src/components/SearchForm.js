@@ -10,7 +10,7 @@ function SearchForm(props) {
     }
     return (
         <div>
-            <lable>Primary Ingredient: </lable>
+            <label>Primary Ingredient: </label>
             <input type='text' value={value} onChange={ (e)=>setValue(e.target.value) } onSubmit={handleOnSubmit}>
             
             

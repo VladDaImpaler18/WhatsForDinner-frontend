@@ -1,14 +1,19 @@
 import React from 'react'
 import "./Recipe.css"
+import { useDispatch } from 'react-redux'
+
 
 const Recipe = ({recipe}) => {
     const str = recipe.thumb.split("/");
     const imageName = str[str.length-1];
     const imageLocation = "/img/".concat(imageName);
+    const dispatch = useDispatch()
+
     return (
-        <div key={recipe.id} class="container-recipe">
+        <div className="container-recipe">
             <img src={imageLocation} alt="Thumbnail" />
             <p>{recipe.title}</p>
+            <button onClick={() => dispatch({ type: 'DELETE_RECIPE', recipe }) }>X</button>
         </div>
     )
 }

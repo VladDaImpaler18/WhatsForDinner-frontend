@@ -1,6 +1,5 @@
 const initialState = {recipes: [], loading: false}
 const RecipeReducer = (state={ recipes: [], loading: false }, action) =>{
-    //debugger //check exactly how action is structured
     switch (action.type) {
         case 'LOADING_DATA':
             return {...state, ingredient: state.ingredient, recipes: state.recipes, loading: true};
@@ -14,6 +13,7 @@ const RecipeReducer = (state={ recipes: [], loading: false }, action) =>{
             debugger
             return {...state, loading: false}
         case 'DELETE_RECIPE':
+            debugger
             return {...state, recipes: state.recipes.filter(r => r !== action.recipe), loading: false };
         
         default: return state;

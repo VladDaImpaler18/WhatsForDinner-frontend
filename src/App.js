@@ -24,13 +24,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <h1>Landing Page!</h1>
+      </header>
+      
       <div style={{ width: 400 }}>
           <SearchForm />
           { ingredient ? <SearchResults recipes={ recipes } ingredient = { ingredient } /> : null }
       </div>
 
-
-      </header>
     </div>
   );
 }

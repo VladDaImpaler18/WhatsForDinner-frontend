@@ -7,15 +7,12 @@ import Recipe from '../components/Recipe';
 //props.recipes
 function SearchResults(props){
 
-    const handleOnClick = (e) => {
-        debugger // delete this container by removing from state
-    }
     let recipes = props.recipes.recipes; // it's in the reducer, which contains: recipes and loading
-    let listRecipes = recipes.map(recipe => <Recipe recipe={ recipe } />)
+    let listRecipes = recipes.map(recipe => <Recipe key={recipe.id} recipe={ recipe } />)
     
     return(
         <div className="container-root">
-           {listRecipes}
+           { props.recipes.loading ? "Loading...": listRecipes }
         </div>
     )
 }
