@@ -4,19 +4,20 @@ function SearchForm(props) {
     const [value, setValue] = useState('')
 
     const handleOnSubmit = (e) => {
-        e.preventdefault()
-        
-
+        e.preventDefault()
+        debugger
+        props.handleIngredient(value)
     }
+
     return (
-        <div>
+        <form onSubmit={handleOnSubmit}>
             <label>Primary Ingredient: </label>
-            <input type='text' value={value} onChange={ (e)=>setValue(e.target.value) } onSubmit={handleOnSubmit}>
+            <input type='text' value={value} onChange={ (e)=>setValue(e.target.value) }>
             
             
             </input>
-            <button>Search!</button>
-        </div>
+            <button> Search! </button>
+        </form>
     )
 }
 

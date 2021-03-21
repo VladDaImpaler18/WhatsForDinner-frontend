@@ -13,12 +13,16 @@ function App() {
   const recipes = useSelector(state => state.recipes)
   const ingredient = useSelector(state => state.ingredient)
   const dispatch = useDispatch()
+
   function loadTestData(json){ //this is totally an action!
     let ingredient = Object.keys(JSON.parse(json))[0] //for now
     let recipes = JSON.parse(json)[ingredient];
     dispatch({ type: 'SELECT_INGREDIENT', ingredient})
     recipes.forEach( recipe => dispatch({ type: 'ADD_RECIPE', recipe }))
   }
+
+  const selectIngredient = (i) => dispatch({ type: 'SELECT_INGREDIENT', ingredient: i })
+  
   useEffect(() => { if (!ingredient){loadTestData(json)} }, []); // w\o the if - this doesn't clear out the state. Ends up creating duplicates :(
 
 //Here I should have state of searchResults (to pass down)
@@ -30,7 +34,7 @@ function App() {
       </header>
       
       <div style={{ width: 400 }}>
-          <SearchForm />
+          <SearchForm handleIngredient={ selectIngredient } />
           { ingredient ? <SearchResults recipes={ recipes } ingredient = { ingredient } /> : null }
       </div>
 
