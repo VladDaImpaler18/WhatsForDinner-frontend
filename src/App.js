@@ -1,4 +1,5 @@
 import React, {useEffect, useReducer} from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import SearchForm from './components/SearchForm';
 import SearchResults from './containers/SearchResults';
 import './App.css';
@@ -8,15 +9,17 @@ const json = "{\"chicken\":[{\"title\":\"Chick-Fil-A Sandwich\",\"thumb\":\"http
 const initialState = {ingredient: '', recipes: [], loading: false}
 
 function App() {
-  const [cookbook, dispatch] = useReducer(RecipeReducer, initialState)
-
+  // const [cookbook, dispatch] = useReducer(RecipeReducer, initialState)
+  const recipes = useSelector(state => state.recipes)
+  const ingredient = useSelector(state => state.ingredient)
+  const dispatch = useDispatch()
   function loadTestData(json){ //this is totally an action!
     let ingredient = Object.keys(JSON.parse(json))[0] //for now
     let recipes = JSON.parse(json)[ingredient];
     dispatch({ type: 'SELECT_INGREDIENT', ingredient})
     recipes.forEach( recipe => dispatch({ type: 'ADD_RECIPE', recipe }))
   }
-  useEffect(() => { loadTestData(json) }, []);
+  useEffect(() => { if (!ingredient){loadTestData(json)} }, []);
 
 //Here I should have state of searchResults (to pass down)
 //Here I should have functions on handleOnSubmit to pass down
@@ -28,7 +31,7 @@ function App() {
       
       <div style={{ width: 400 }}>
           <SearchForm />
-          { cookbook.ingredient ? <SearchResults recipes={ cookbook.recipes } ingredient = { cookbook.ingredient } /> : null }
+          { ingredient ? <SearchResults recipes={ recipes } ingredient = { ingredient } /> : null }
       </div>
 
     </div>
