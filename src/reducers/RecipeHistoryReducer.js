@@ -1,5 +1,5 @@
 const initialState = {recipes: [], loading: false}
-const RecipeReducer = (state={ recipes: [], loading: false }, action) =>{
+const RecipeReducer = (state={ ingredient: '', recipes: [], loading: false }, action) =>{
     switch (action.type) {
         case 'LOADING_DATA':
             return {...state, ingredient: state.ingredient, recipes: state.recipes, loading: true};
@@ -7,11 +7,15 @@ const RecipeReducer = (state={ recipes: [], loading: false }, action) =>{
         case 'ADD_RECIPE':
             return {...state, recipes: state.recipes.concat(action.recipe), loading: false};
 
-        case 'CLEAR_ALL': return {initialState};
+        case 'CLEAR_ALL': return {...state, initialState};
 
         case 'SELECT_RECIPE':
             debugger
             return {...state, loading: false}
+        
+        case 'SELECT_INGREDIENT':
+            return {...state, ingredient: action.ingredient}
+
         case 'DELETE_RECIPE':
             debugger
             return {...state, recipes: state.recipes.filter(r => r !== action.recipe), loading: false };

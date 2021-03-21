@@ -6,12 +6,12 @@ import Recipe from '../components/Recipe';
 //from the props, loop through and display each item individually
 //props.recipes
 function SearchResults(props){
-
-    let recipes = props.recipes.recipes; // it's in the reducer, which contains: recipes and loading
+    let recipes = props.recipes; // it's in the reducer, which contains: recipes and loading
     let listRecipes = recipes.map(recipe => <Recipe key={recipe.id} recipe={ recipe } />)
     
     return(
         <div className="container-root">
+            <p>Search results for: { props.ingredient }</p>
            { props.recipes.loading ? "Loading...": listRecipes }
         </div>
     )

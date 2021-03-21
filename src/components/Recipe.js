@@ -3,8 +3,8 @@ import "./Recipe.css"
 import { useDispatch } from 'react-redux'
 
 
-const Recipe = ({recipe}) => {
-    const str = recipe.thumb.split("/");
+const Recipe = (props) => {
+    const str = props.recipe.thumb.split("/");
     const imageName = str[str.length-1];
     const imageLocation = "/img/".concat(imageName);
     const dispatch = useDispatch()
@@ -12,8 +12,8 @@ const Recipe = ({recipe}) => {
     return (
         <div className="container-recipe">
             <img src={imageLocation} alt="Thumbnail" />
-            <p>{recipe.title}</p>
-            <button onClick={() => dispatch({ type: 'DELETE_RECIPE', recipe }) }>X</button>
+            <p>{props.recipe.title}</p>
+            <button onClick={() => dispatch({ type: 'DELETE_RECIPE', recipe: props.recipe }) }>X</button>
         </div>
     )
 }
