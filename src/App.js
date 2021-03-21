@@ -19,7 +19,7 @@ function App() {
     dispatch({ type: 'SELECT_INGREDIENT', ingredient})
     recipes.forEach( recipe => dispatch({ type: 'ADD_RECIPE', recipe }))
   }
-  useEffect(() => { if (!ingredient){loadTestData(json)} }, []);
+  useEffect(() => { if (!ingredient){loadTestData(json)} }, []); // w\o the if - this doesn't clear out the state. Ends up creating duplicates :(
 
 //Here I should have state of searchResults (to pass down)
 //Here I should have functions on handleOnSubmit to pass down
