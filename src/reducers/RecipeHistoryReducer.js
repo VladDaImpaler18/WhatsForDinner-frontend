@@ -1,10 +1,13 @@
 const RecipeReducer = (state={ ingredient: '', recipes: [], loading: false }, action) =>{
     switch (action.type) {
-        case 'LOADING_DATA':
+        case 'START_SEARCH_RECIPES_REQUEST':
             return {...state, ingredient: state.ingredient, recipes: state.recipes, loading: true};
     
         case 'ADD_RECIPE':
             return {...state, recipes: state.recipes.concat(action.recipe), loading: false};
+
+        case 'ADD_RECIPES_BATCH':
+            return {...state, recipes: action.recipes, loading: false};
 
         case 'CLEAR_ALL': return {...state, ingredient: '', recipes: [], loading: false};
 

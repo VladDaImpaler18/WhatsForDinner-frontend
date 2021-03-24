@@ -18,6 +18,23 @@ function App() {
     recipes.forEach( recipe => dispatch({ type: 'ADD_RECIPE', recipe }))
   }
 
+  //http://localhost:3001/${userID}/cookbook/ //all recipes in user's cookbook
+  //http://localhost:3001/${userID}/cookbook/${ingredient}/ //all recipes in user's cookbook for ingredient X
+  //http://localhost:3001/recipe/${recipe.UID} //individual recipe information
+  
+  //fetchRecipes(ingredient) sends a request to the backend, to figure out all the recipes for ingredient.
+  //backend returns cookbook. Cookbook[ingredient] = recipes hash
+  function fetchRecipes(ingredient){
+    const userID = 1 //for testing purposes only, placeholder for user ID
+    return (dispatch) => {
+      dispatch( {type: 'START_SEARCH_RECIPES_REQUEST' });
+      fetch(`http://localhost:3001/${userID}/cookbook/${ingredient}`)
+      .then(response => response.json())
+      .then(cookbook => {
+        dispatch({ type: 'ADD_RECIPES_BATCH', recipes: cookbook[ingredient]})
+      })
+    }
+  }
   const selectIngredient = (i) => dispatch({ type: 'SELECT_INGREDIENT', ingredient: i })//Here 
   
     useEffect(() => {
@@ -26,8 +43,7 @@ function App() {
       dispatch( { type: 'CLEAR_ALL' })
     }
   }, [])
-//Here I should have state of searchResults (to pass down)
-//Here I should have functions on handleOnSubmit to pass down
+
   return (
     <div className="App">
       <header className="App-header">
