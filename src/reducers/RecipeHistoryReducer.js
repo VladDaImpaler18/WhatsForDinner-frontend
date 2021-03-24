@@ -1,4 +1,3 @@
-const initialState = {recipes: [], loading: false}
 const RecipeReducer = (state={ ingredient: '', recipes: [], loading: false }, action) =>{
     switch (action.type) {
         case 'LOADING_DATA':
@@ -7,7 +6,7 @@ const RecipeReducer = (state={ ingredient: '', recipes: [], loading: false }, ac
         case 'ADD_RECIPE':
             return {...state, recipes: state.recipes.concat(action.recipe), loading: false};
 
-        case 'CLEAR_ALL': return {...state, initialState};
+        case 'CLEAR_ALL': return {...state, ingredient: '', recipes: [], loading: false};
 
         case 'SELECT_RECIPE':
             debugger
