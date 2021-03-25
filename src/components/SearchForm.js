@@ -6,7 +6,8 @@ function SearchForm(props) {
     const handleOnSubmit = (e) => {
         e.preventDefault()
         debugger
-        props.handleIngredient(value)
+        props.handleIngredient(value) //do th e fetch function that has been passed as prop
+        setValue('')
     }
 
     return (
