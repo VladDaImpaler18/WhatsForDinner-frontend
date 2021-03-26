@@ -13,10 +13,7 @@ function SearchForm(props) {
     return (
         <form onSubmit={handleOnSubmit}>
             <label>Primary Ingredient: </label>
-            <input type='text' value={value} onChange={ (e)=>setValue(e.target.value) }>
-            
-            
-            </input>
+            <input type='text' value={value} onChange={ (e)=>setValue(e.target.value) } />
             <button> Search! </button>
         </form>
     )
