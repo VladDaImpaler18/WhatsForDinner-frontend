@@ -24,7 +24,7 @@ ReactDOM.render(
     <Router>
       <>
         <Navbar />
-        <Route path="/" component={ App } />
+        <Route exact path="/" component={ App } />
         <Route exact path="/history" component={ History } />
       </>
     </Router>

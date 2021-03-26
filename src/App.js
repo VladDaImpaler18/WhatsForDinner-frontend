@@ -4,6 +4,8 @@ import SearchForm from './components/SearchForm';
 import SearchResults from './containers/SearchResults';
 import './App.css';
 
+//make this page a landing home page? The layou needs to fleshed out more
+
 function App() {
   const recipes = useSelector(state => state.recipes)
   const ingredient = useSelector(state => state.ingredient)
