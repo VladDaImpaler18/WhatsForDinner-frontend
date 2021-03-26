@@ -31,10 +31,11 @@ function App() {
       fetch(`http://localhost:3001/${userID}/cookbook/${ingredient}`)
       .then(response => response.json())
       .then(cookbook => {
-        dispatch({ type: 'ADD_RECIPES_BATCH', recipes: cookbook[ingredient]})
+        dispatch({ type: 'ADD_RECIPES_BATCH', recipes: cookbook[ingredient]}) //this or do a map function and do loop of add_recipe  
       })
     }
   }
+
   const selectIngredient = (i) => dispatch({ type: 'SELECT_INGREDIENT', ingredient: i })//Here 
   
     useEffect(() => {

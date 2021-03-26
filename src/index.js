@@ -8,6 +8,10 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { Provider } from 'react-redux';
 import RecipeReducer from './reducers/RecipeHistoryReducer.js';
+import Navbar from './components/navigation/Navbar'
+import History from './components/navigation/History'
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const store = createStore(
   RecipeReducer,
@@ -17,9 +21,13 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-  {/*<React.StrictMode>*/}
-    <App />
-  {/*</React.StrictMode>,*/}
+    <Router>
+      <>
+        <Navbar />
+        <Route path="/" component={ App } />
+        <Route exact path="/history" component={ History } />
+      </>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
