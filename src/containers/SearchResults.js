@@ -7,7 +7,7 @@ import Recipe from '../components/Recipe';
 //props.recipes
 function SearchResults(props){
     let listRecipes = props.recipes.map(recipe => <Recipe key={recipe.id} recipe={ recipe } />)
-    
+    //recipe on click leads to specific recipe page. can send fetch request with ID.
     return(
         <div className="container-root">
             <p>Search results for: { props.ingredient }</p>
