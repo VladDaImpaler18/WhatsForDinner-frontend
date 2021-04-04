@@ -34,13 +34,12 @@ let initialState = ["chicken", "beef", "tofu", "corn", "broccoli"]
                   className="List"
                   height={height}
                   itemCount={ingredients.length}
-                  itemSize={35}
-                  width={width}
+                  itemSize={50}
+                  width={width / 2}
                 >
                   {row}
                 </List>
-            )
-              }
+            )}
             </AutoSizer>
         </>
     )
