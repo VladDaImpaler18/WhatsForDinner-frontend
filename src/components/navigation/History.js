@@ -19,12 +19,13 @@ let initialState = ["chicken", "beef", "tofu", "corn", "broccoli"]
     //{data, index, style}
     const row = ({index, style}) => {
         //maybe show some thumbnails of included recipes.
+        //make each ingredient div clickable
         return(
+          
         <div className={index % 2 ? "ListItemOdd" : "ListItemEven"} style={style}>
             {ingredients[index]}
         </div>
     )}
-    
     return(
         <>
         <p>Cookbook history</p>

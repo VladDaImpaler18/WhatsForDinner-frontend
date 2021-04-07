@@ -1,12 +1,13 @@
 import React from 'react'
 import "./SearchResults.css"
-import Recipe from '../components/Recipe';
+import RecipeSmall from '../components/RecipeSmall';
 //uses the results from SearchForm
 
 //from the props, loop through and display each item individually
 //props.recipes
 function SearchResults(props){
-    let listRecipes = props.recipes.map(recipe => <Recipe key={recipe.id} recipe={ recipe } />)
+    
+    let listRecipes = props.recipes.map(recipe => <RecipeSmall key={recipe.id} recipe={ recipe }  />)
     //recipe on click leads to specific recipe page. can send fetch request with ID.
     return(
         <div className="container-root">
