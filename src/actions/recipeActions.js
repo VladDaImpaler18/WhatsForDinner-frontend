@@ -1,19 +1,46 @@
-  //maybe not used
-  //fetchHistory
-  const fetchHistory = () => { 
+import { FETCH_MEAL_REQUEST, FETCH_MEAL_SUCCESS, FETCH_MEAL_FAIL } from "../constants/action-type";
+  const baseURL = "http://localhost:3000"
+
+  const importMeal = (url) => { 
     return(dispatch) => {
-    dispatch({ type: 'LOADING_DATA' });
-    fetch('http://localhost:3001/cookbook')
+      let configObj = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(url)
+
+      };
+    dispatch({ type: FETCH_MEAL_REQUEST });
+    fetch(`${baseURL}/meals/import`, configObj)
          .then(response => response.json())
-         .then(recipeData => {
-             dispatch({ type: 'ADD_RECIPE', recipes: recipeData })
+         .then(mealData => {
+             dispatch({ type: FETCH_MEAL_SUCCESS, payload: mealData })
           })
+         .catch(err => dispatch({ type: FETCH_MEAL_FAIL, payload: err })); 
     };
   }
-  //selectRecipe
 
-  //addRecipe
+  const addMeal = (meal) => {
+    return(dispatch) => {
+      let configObj = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(meal)
+      };
+      fetch(`${baseURL}`)
+    };
+  }
 
-  //deleteHistory
+  //selectMeal
+  
 
-  //clearHistory
+  //addMeal
+
+  //deleteMeal
+
+  
