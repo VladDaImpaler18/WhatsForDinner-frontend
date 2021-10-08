@@ -17,7 +17,7 @@ function mealForm(props){
         setValue('')
     }
 
-    return((
+    return(
         <form onSubmit={this.handleOnSubmit}>
             <label> Title </label>
             <input type='text' name="title" value={title} onChange={ (e) => setTitle(e.target.value) } />
