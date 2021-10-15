@@ -1,6 +1,6 @@
-// import React, {useState} from 'react'
+import React, {useState} from 'react'
 
-function mealForm(props){
+function MealForm(props){
     // Meal states
     const [title, setTitle] = useState('')
     const [category, setCategory] = useState('')
@@ -14,29 +14,43 @@ function mealForm(props){
         e.preventDefault()
         debugger
         
-        setValue('')
+    }
+
+    const handleOnChange = (e) => {
+        const [label, index] = e.target.name.split(/\[(\d)\]/)
+        switch(label) {
+            case "ingredients":
+                return setIngredients(ingredients => [...ingredients, ingredients[index] = e.target.value])
+                // debugger
+            case "instructions":
+                return setInstructions(instructions => [...instructions, instructions[index] = e.target.value])
+            case "tags":
+                return setTags(tags => [...tags, tags[index] = e.target.value])
+
+        }
     }
 
     return(
-        <form onSubmit={this.handleOnSubmit}>
+        <form onSubmit={handleOnSubmit}>
             <label> Title </label>
             <input type='text' name="title" value={title} onChange={ (e) => setTitle(e.target.value) } />
-
+            <br/>
             <label> Category:  </label>
             <input type='text' name="category" value={category} onChange={ (e) => setCategory(e.target.value) }/>
-            
+            <br/>
             <label> Ingredients: </label>
             {ingredients.length===0 ? 
                 <>
-                <input type='text' name="ingredients[0]" value="" onChange={ (e) => setIngredients( ingredients => [...ingredients, e.target.value]) } />
+                <input type='text' name="ingredients[0]" key="ingredients[0]" value="" onChange={ handleOnChange } />
                 </>
                 :
                 <>
                 {ingredients.map( (ingredient, i) => 
-                <input type='text' name={`ingredients[${i}]`} value={ingredient} onChange={ (e) => setIngredients( ingredients => [...ingredients, e.target.value]) }/>
+                <input type='text' name={`ingredients[${i}]`} key={`ingredients[${i}]`} value={ingredient} onChange={ (e) => setIngredients( ingredients => [...ingredients, e.target.value]) }/>
                 )}
                 </>
             }
+            <br/>
             <label> Instructions: </label>
             {instructions.length===0 ?
                 <>
@@ -49,7 +63,7 @@ function mealForm(props){
                 )}
                 </>
             }
-
+            <br/>
             <label> Tags: </label>
             {tags.length===0 ?
                 <>
@@ -62,14 +76,14 @@ function mealForm(props){
                 )}
                 </>
             }
-
+            <br/>
             <label> Source: </label>
             <input type='text' name="source" value={source} onChange={ (e) => setSource(e.target.value) } />
 
-
+            <br/>
             <input type="submit" value="Add Meal" />
         </form>
     )
 }
 
-export default mealForm
+export default MealForm

@@ -9,9 +9,9 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { Provider } from 'react-redux';
 import RecipeReducer from './reducers/RecipeHistoryReducer.js';
 import Navbar from './components/navigation/Navbar'
-import History from './components/navigation/History'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import MealForm from './components/MealForm';
 
 const store = createStore(
   RecipeReducer,
@@ -23,9 +23,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <>
-        <Navbar />
-        <Route exact path="/" component={ App } />
-        <Route exact path="/history" component={ History } />
+        {/* <Navbar /> */}
+        <Route exact path="/" component={ MealForm } />
+
       </>
     </Router>
   </Provider>,
