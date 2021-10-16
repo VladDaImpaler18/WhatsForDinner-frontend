@@ -4,9 +4,9 @@ function MealForm(props){
     // Meal states
     const [title, setTitle] = useState('')
     const [category, setCategory] = useState('')
-    const [ingredients, setIngredients] = useState([])
-    const [instructions, setInstructions] = useState([])
-    const [tags, setTags] = useState([])
+    const [ingredients, setIngredients] = useState(['','',''])
+    const [instructions, setInstructions] = useState(['','',''])
+    const [tags, setTags] = useState([''])
     const [source, setSource] = useState('')
 
     // handed down from component
@@ -16,16 +16,44 @@ function MealForm(props){
         
     }
 
+    const handleOnClick = (e) => {
+        const button_action = e.target.name
+        switch(button_action) {
+            case "add ingredients":
+                if(ingredients[ingredients.length-1] != '')
+                    return setIngredients([...ingredients, ''])
+                else{
+                    let ingredientsDiv = Array.from(e.target.parentElement.children)
+                    let numOfIngredients = e.target.parentElement.childElementCount-1
+                    ingredientsDiv.filter(element => element.type === "text" && element.value === "").forEach(element => { 
+                        element.setAttribute("placeholder","Must be filled in")//last one should show this, any missing ones inbetween elements shifted.
+                    })
+                    break;
+                }
+
+            case "add instructions":
+                return setInstructions([...ingredients,''])
+
+            case "add tags":
+                return setTags([...tags,''])
+        }
+    }
+
     const handleOnChange = (e) => {
         const [label, index] = e.target.name.split(/\[(\d)\]/)
         switch(label) {
             case "ingredients":
-                return setIngredients(ingredients => [...ingredients, ingredients[index] = e.target.value])
-                // debugger
+                let newIngredientsArray = [...ingredients]
+                newIngredientsArray[index]=e.target.value
+                return setIngredients(newIngredientsArray)
             case "instructions":
-                return setInstructions(instructions => [...instructions, instructions[index] = e.target.value])
+                let newInstructionsArray = [...instructions]
+                newInstructionsArray[index] = e.target.value
+                return setInstructions(newInstructionsArray)
             case "tags":
-                return setTags(tags => [...tags, tags[index] = e.target.value])
+                let newTagsArray = [...tags]
+                newTagsArray[index] = e.target.value
+                return setTags(newTagsArray)
 
         }
     }
@@ -39,43 +67,28 @@ function MealForm(props){
             <input type='text' name="category" value={category} onChange={ (e) => setCategory(e.target.value) }/>
             <br/>
             <label> Ingredients: </label>
-            {ingredients.length===0 ? 
-                <>
-                <input type='text' name="ingredients[0]" key="ingredients[0]" value="" onChange={ handleOnChange } />
-                </>
-                :
-                <>
+            <div name="ingredients">
                 {ingredients.map( (ingredient, i) => 
-                <input type='text' name={`ingredients[${i}]`} key={`ingredients[${i}]`} value={ingredient} onChange={ (e) => setIngredients( ingredients => [...ingredients, e.target.value]) }/>
+                <input type='text' name={`ingredients[${i}]`} key={`ingredients[${i}]`} value={ingredient} onChange={ handleOnChange }/>
                 )}
-                </>
-            }
+            <button type="button" name="add ingredients" onClick={handleOnClick}> (+) Add Ingredient </button>
+            </div>
             <br/>
             <label> Instructions: </label>
-            {instructions.length===0 ?
-                <>
-                <input type='text' name='instructions[0]' value="" onChange={ (e) => setInstructions( instructions => [...instructions, e.target.value]) } />
-                </>
-                :
-                <>
+            <div name="instructions">
                 {instructions.map( (instruction, i) =>
-                <input type='text' name={`instructions[${i}]`} value={instruction} onChange={ (e)=> setInstructions( instructions => [...instructions, e.target.value]) } />
+                <input type='text' name={`instructions[${i}]`} value={instruction} onChange={ handleOnChange } />
                 )}
-                </>
-            }
+            <button type="button" name="add instructions" onClick={handleOnClick}> (+) Add Instructions </button>
+            </div>
             <br/>
             <label> Tags: </label>
-            {tags.length===0 ?
-                <>
-                <input type='text' name='tags[0]' value="" onChange={ (e) => setTags( tags => [...tags, e.target.value]) } />
-                </>
-                :
-                <>
+            <div name="tags">
                 {tags.map( (tag, i) =>
-                <input type='text' name={`tags[${i}]`} value={tag} onChange={ (e)=> setTags( tags => [...tags, e.target.value]) } />
+                <input type='text' name={`tags[${i}]`} value={tag} onChange={ handleOnChange } />
                 )}
-                </>
-            }
+            <button type="button" name="add tags" onClick={handleOnClick}> (+) Add Tags </button>
+            </div>
             <br/>
             <label> Source: </label>
             <input type='text' name="source" value={source} onChange={ (e) => setSource(e.target.value) } />
