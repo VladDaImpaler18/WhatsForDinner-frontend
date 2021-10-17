@@ -17,3 +17,5 @@
   //deleteHistory
 
   //clearHistory
+
+  //Search TheMealsDB.com

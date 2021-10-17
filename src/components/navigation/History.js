@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import jsondata from '../../.cache/recipeData'
+import historyData from "../../.cache/historyData"; //for testing
 
 import { FixedSizeList as List } from 'react-window';
 import AutoSizer from "react-virtualized-auto-sizer";
@@ -10,11 +10,11 @@ function History(){
 //component did mount fetch user's history from backend
 /*****local state***** after fetching
 ingredients: [ingredient1, ..., ingredientN]
-selection: null
-recipes: [] (length = 0)
+selection: null //when this is set, changes output to expand on recipes that their recipe.category === selection
+recipes: [..., ..., ..., ...] (length = 4)
 */
-let initialState = ["chicken", "beef", "tofu", "corn", "broccoli"]
-    const [ingredients, setIngredients] = useState(initialState)
+    const [categories, setCategories] = useState([])
+    const [selection, setSelection] = useState('')
 
     //{data, index, style}
     const row = ({index, style}) => {
@@ -23,9 +23,21 @@ let initialState = ["chicken", "beef", "tofu", "corn", "broccoli"]
         return(
           
         <div className={index % 2 ? "ListItemOdd" : "ListItemEven"} style={style}>
-            {ingredients[index]}
+            {categories[index]}
         </div>
     )}
+
+    function getUniqueCategories(recipesArr){
+      let categories = recipesArr.map(({category}) => category);
+      setCategories([... new Set(categories)])
+    }
+
+    useEffect(() => {
+      getUniqueCategories(historyData)
+      return () => {
+        
+      }
+    }, [])
     return(
         <>
         <p>Cookbook history</p>
@@ -34,7 +46,7 @@ let initialState = ["chicken", "beef", "tofu", "corn", "broccoli"]
                 <List 
                   className="List"
                   height={height}
-                  itemCount={ingredients.length}
+                  itemCount={categories.length}
                   itemSize={50}
                   width={width / 2}
                 >
