@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import { addMeal } from '../actions/mealActions'
+
 
 function MealForm(props){
     // Meal states
@@ -12,15 +14,24 @@ function MealForm(props){
     // handed down from component
     const handleOnSubmit = (e) => {
         e.preventDefault()
+        
+        let meal = {title, category, ingredients, instructions, tags, source}
+        addMeal(meal)
         debugger
+        setTitle('')
+        setCategory('')
+        setIngredients(['','',''])
+        setInstructions(['','',''])
+        setTags([''])
+        setSource('')
         
     }
 
     const handleOnClick = (e) => {
         const button_action = e.target.name
         switch(button_action) {
-            case "add ingredients":
-                if(ingredients[ingredients.length-1] != '')
+            case "add ingredients": 
+                if(ingredients[ingredients.length-1] !== '')
                     return setIngredients([...ingredients, ''])
                 else{
                     let ingredientsDiv = Array.from(e.target.parentElement.children)
@@ -32,10 +43,20 @@ function MealForm(props){
                 }
 
             case "add instructions":
-                return setInstructions([...ingredients,''])
+                if(instructions[instructions.length-1] !== '')
+                    return setInstructions([...instructions,''])
+                else {
+                    let instructionsDiv = Array.from(e.target.parentElement.children)
+                    instructionsDiv.filter(element => element.type === "text" && element.value === "").forEach(element => { 
+                        element.setAttribute("placeholder","Must be filled in")//last one should show this, any missing ones inbetween elements shifted.
+                    })
+                    break;
+                }
 
             case "add tags":
                 return setTags([...tags,''])
+
+            default: return 0
         }
     }
 

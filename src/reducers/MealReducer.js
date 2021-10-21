@@ -1,28 +1,29 @@
-// const MealReducer = (state={ ingredient: '', recipes: [], loading: false }, action) =>{
-const MealReducer = (state={ title: '',  recipes: [], loading: false }, action) =>{
+import { IMPORT_MEAL_REQUEST, IMPORT_MEAL_SUCCESS, IMPORT_MEAL_FAIL, CREATE_MEAL_REQUEST, CREATE_MEAL_SUCCESS, CREATE_MEAL_FAIL } from "../constants/action-type";
+let meal = {title: '',  category: '', ingredients:[], instructions: [], tags: [], source: ''}
+
+const MealReducer = (state={ meal, loading: false, err:'' }, action) =>{
     switch (action.type) {
-        case 'START_SEARCH_RECIPES_REQUEST':
-            return {...state, ingredient: state.ingredient, recipes: state.recipes, loading: true};
-    
-        case 'ADD_RECIPE':
-            return {...state, recipes: state.recipes.concat(action.recipe), loading: false};
-
-        case 'ADD_RECIPES_BATCH':
-            return {...state, recipes: action.recipes, loading: false};
-
-        case 'CLEAR_ALL': return {...state, ingredient: '', recipes: [], loading: false};
-
-        case 'SELECT_RECIPE':
+        case IMPORT_MEAL_REQUEST:
+            return {...state, loading: true}
+            
+        case IMPORT_MEAL_SUCCESS:
             debugger
             return {...state, loading: false}
         
-        case 'SELECT_INGREDIENT':
-            return {...state, ingredient: action.ingredient}
+        case IMPORT_MEAL_FAIL:
+            return {...state, loading: false}
 
-        case 'DELETE_RECIPE':
+        case CREATE_MEAL_REQUEST:
             debugger
-            return {...state, recipes: state.recipes.filter(r => r !== action.recipe), loading: false };
-        
+            return {...state, loading: true}
+
+        case CREATE_MEAL_SUCCESS:
+            debugger
+            return {...state, loading: false}
+
+        case CREATE_MEAL_FAIL:
+            return {...state, loading: false}
+
         default: return state;
     }
 }
