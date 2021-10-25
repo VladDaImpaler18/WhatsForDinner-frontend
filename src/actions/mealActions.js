@@ -23,8 +23,7 @@ import { IMPORT_MEAL_REQUEST, IMPORT_MEAL_SUCCESS, IMPORT_MEAL_FAIL, CREATE_MEAL
     };
   }
 
-  export const addMeal = (meal) => {
-    return(dispatch) => {
+  export const addMeal = (meal) => (dispatch) => {
       let configObj = {
         method: "POST",
         headers: {
@@ -33,16 +32,17 @@ import { IMPORT_MEAL_REQUEST, IMPORT_MEAL_SUCCESS, IMPORT_MEAL_FAIL, CREATE_MEAL
         },
         body: JSON.stringify(meal)
       };
+      debugger
       dispatch( { type: CREATE_MEAL_REQUEST });
       fetch(`${baseURL}/meals/new`, configObj)
         .then(response => response.json())
         .then(mealData => {
             debugger
-          dispatch({ type: CREATE_MEAL_SUCCESS, payload: mealData })
+          return dispatch({ type: CREATE_MEAL_SUCCESS, payload: mealData })
         })
         .catch(err => dispatch({ type: CREATE_MEAL_FAIL, payload: err }));
     };
-  }
+  
 
   //selectMeal
   

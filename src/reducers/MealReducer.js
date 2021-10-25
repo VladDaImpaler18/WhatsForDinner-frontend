@@ -4,6 +4,7 @@ let meal = {title: '',  category: '', ingredients:[], instructions: [], tags: []
 const MealReducer = (state={ meal, loading: false, err:'' }, action) =>{
     switch (action.type) {
         case IMPORT_MEAL_REQUEST:
+            debugger
             return {...state, loading: true}
             
         case IMPORT_MEAL_SUCCESS:
@@ -11,6 +12,7 @@ const MealReducer = (state={ meal, loading: false, err:'' }, action) =>{
             return {...state, loading: false}
         
         case IMPORT_MEAL_FAIL:
+            debugger
             return {...state, loading: false}
 
         case CREATE_MEAL_REQUEST:
@@ -22,7 +24,10 @@ const MealReducer = (state={ meal, loading: false, err:'' }, action) =>{
             return {...state, loading: false}
 
         case CREATE_MEAL_FAIL:
+            debugger
             return {...state, loading: false}
+
+        case "@@INIT":
 
         default: return state;
     }

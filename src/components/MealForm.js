@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { addMeal } from '../actions/mealActions'
-
+import {useSelector, useDispatch } from 'react-redux'
+import {useEffect} from 'react'
 
 function MealForm(props){
     // Meal states
@@ -14,18 +15,18 @@ function MealForm(props){
     // handed down from component
     const handleOnSubmit = (e) => {
         e.preventDefault()
-        
         let meal = {title, category, ingredients, instructions, tags, source}
+        
         addMeal(meal)
-        debugger
-        setTitle('')
-        setCategory('')
-        setIngredients(['','',''])
-        setInstructions(['','',''])
-        setTags([''])
-        setSource('')
+        // setTitle('')
+        // setCategory('')
+        // setIngredients(['','',''])
+        // setInstructions(['','',''])
+        // setTags([''])
+        // setSource('')
         
     }
+
 
     const handleOnClick = (e) => {
         const button_action = e.target.name
