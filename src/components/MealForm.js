@@ -1,32 +1,8 @@
 import React, {useState} from 'react'
 import { addMeal } from '../actions/mealActions'
-import {useSelector, useDispatch } from 'react-redux'
 import {useEffect} from 'react'
 
 function MealForm(props){
-    // Meal states
-    const [title, setTitle] = useState('')
-    const [category, setCategory] = useState('')
-    const [ingredients, setIngredients] = useState(['','',''])
-    const [instructions, setInstructions] = useState(['','',''])
-    const [tags, setTags] = useState([''])
-    const [source, setSource] = useState('')
-
-    // handed down from component
-    const handleOnSubmit = (e) => {
-        e.preventDefault()
-        let meal = {title, category, ingredients, instructions, tags, source}
-        
-        addMeal(meal)
-        // setTitle('')
-        // setCategory('')
-        // setIngredients(['','',''])
-        // setInstructions(['','',''])
-        // setTags([''])
-        // setSource('')
-        
-    }
-
 
     const handleOnClick = (e) => {
         const button_action = e.target.name
@@ -81,7 +57,7 @@ function MealForm(props){
     }
 
     return(
-        <form onSubmit={handleOnSubmit}>
+        <form onSubmit={props.handleSubmit}>
             <label> Title </label>
             <input type='text' name="title" value={title} onChange={ (e) => setTitle(e.target.value) } />
             <br/>

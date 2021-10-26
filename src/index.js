@@ -12,7 +12,7 @@ import MealReducer from './reducers/MealReducer'
 import Navbar from './components/navigation/Navbar'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import MealForm from './components/MealForm';
+import NewMeal from './containers/NewMeal';
 
 const store = createStore(
   MealReducer,
@@ -25,7 +25,7 @@ ReactDOM.render(
     <Router>
       <>
         {/* <Navbar /> */}
-        <Route exact path="/" component={ MealForm } />
+        <Route exact path="/" component={ NewMeal } />
 
       </>
     </Router>
