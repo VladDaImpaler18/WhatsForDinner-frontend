@@ -1,35 +1,30 @@
+//meal container
 import React, {useEffect, useState} from 'react'
 import ImportForm from '../components/ImportForm'
 import MealForm from '../components/MealForm'
 import {useSelector, useDispatch } from 'react-redux'
 
 function NewMeal() {
-    const meal = useSelector(state => state.meal);
+    // Meal states to be passed
+    let initialState = {
+        title: '',
+        category: '',
+        ingredients: ['','',''],
+        instructions: ['','',''],
+        tags:[''],
+        source:''
+        }
+    const [meal, setMeal] = useState(initialState)
+    
     const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch()
-    //     return () => {
-    //         cleanup
-    //     }
-    // }, [input])
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        let meal = {title, category, ingredients, instructions, tags, source}
-        
-        addMeal(meal)
-        // setTitle('')
-        // setCategory('')
-        // setIngredients(['','',''])
-        // setInstructions(['','',''])
-        // setTags([''])
-        // setSource('')
-        //submit mealData to backend, then route to show page
+ 
+    const handleSubmit = (e) => {      
+        //do addMeal stuff
+        // dispatch(addMeal(meal))
     }
 
     const handleImport = (e) => {
-        e.preventDefault()
-        //do import stuff, and change the state
+        //do import stuff
 
     }
 
