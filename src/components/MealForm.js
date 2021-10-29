@@ -13,7 +13,7 @@ function MealForm(props){
     const [source, setSource] = useState('')
 /*  -------------------  */
 /*  -- Imported Meal (optional) --  */
-    if(!!props.meal){
+    if(!!props.meal.title){
         setTitle(props.meal.title);
         setCategory(props.meal.category);
         setIngredients(props.meal.ingredients);
