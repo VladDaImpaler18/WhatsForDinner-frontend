@@ -1,9 +1,33 @@
 import React, {useState} from 'react'
 import { addMeal } from '../actions/mealActions'
-import {useEffect} from 'react'
 
 function MealForm(props){
+//props.meal (import optional), props.handleSubmit
 
+/*  -- Internal Default State --  */
+    const [title, setTitle] = useState('')
+    const [category, setCategory] = useState('')
+    const [ingredients, setIngredients] = useState(['','',''])
+    const [instructions, setInstructions] = useState(['','',''])
+    const [tags, setTags] = useState([''])
+    const [source, setSource] = useState('')
+/*  -------------------  */
+/*  -- Imported Meal (optional) --  */
+    if(!!props.meal){
+        setTitle(props.meal.title);
+        setCategory(props.meal.category);
+        setIngredients(props.meal.ingredients);
+        setInstructions(props.meal.instructions);
+        setTags(props.meal.tags);
+        setSource(props.meal.source);
+    }
+/*  -------------------  */
+
+    const submit = (e) => {
+        e.preventDefault()
+        let meal = {title, category, ingredients, instructions, tags, source}
+        props.handleSubmit(meal)
+    }
     const handleOnClick = (e) => {
         const button_action = e.target.name
         switch(button_action) {
@@ -14,7 +38,7 @@ function MealForm(props){
                     let ingredientsDiv = Array.from(e.target.parentElement.children)
                     let numOfIngredients = e.target.parentElement.childElementCount-1
                     ingredientsDiv.filter(element => element.type === "text" && element.value === "").forEach(element => { 
-                        element.setAttribute("placeholder","Must be filled in")//last one should show this, any missing ones inbetween elements shifted.
+                        element.setAttribute("placeholder","Must be filled in")//TODO: Last one should show this, any missing ones inbetween elements shifted.
                     })
                     break;
                 }
@@ -25,13 +49,20 @@ function MealForm(props){
                 else {
                     let instructionsDiv = Array.from(e.target.parentElement.children)
                     instructionsDiv.filter(element => element.type === "text" && element.value === "").forEach(element => { 
-                        element.setAttribute("placeholder","Must be filled in")//last one should show this, any missing ones inbetween elements shifted.
+                        element.setAttribute("placeholder","Must be filled in")//TODO: Same as above
                     })
                     break;
                 }
 
             case "add tags":
-                return setTags([...tags,''])
+                if(tags[tags.length-1] !== '')
+                    return setTags([...tags,''])
+                else {
+                    let tagsDiv = Array.from(e.target.parentElement.children)
+                    tagsDiv.filter(element => element.type === "text" && element.value === "").forEach(element => {
+                        element.setAttribute("placeholder","Must be filled in")//TODO: Previous TODOs + Refactor
+                    })
+                }
 
             default: return 0
         }
@@ -57,7 +88,7 @@ function MealForm(props){
     }
 
     return(
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={submit}>
             <label> Title </label>
             <input type='text' name="title" value={title} onChange={ (e) => setTitle(e.target.value) } />
             <br/>
