@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 import ImportForm from '../components/ImportForm'
 import MealForm from '../components/MealForm'
 import {useSelector, useDispatch } from 'react-redux'
-import { addMeal } from '../actions/mealActions'
+import { addMeal, importMeal } from '../actions/mealActions'
 
 function NewMeal() {
     // Meal states to be passed
@@ -19,13 +19,16 @@ function NewMeal() {
     
     const dispatch = useDispatch();
  
-    const handleSubmit = (e) => {      
+    const handleSubmit = (meal) => {      
         //do addMeal stuff
         dispatch(addMeal(meal))
     }
 
-    const handleImport = (e) => {
+    const handleImport = (url) => {
         //do import stuff
+        console.log("Importing...")
+        debugger
+        dispatch(importMeal(url))
 
     }
 
