@@ -1,8 +1,7 @@
 import { IMPORT_MEAL_REQUEST, IMPORT_MEAL_SUCCESS, IMPORT_MEAL_FAIL, CREATE_MEAL_REQUEST, CREATE_MEAL_SUCCESS, CREATE_MEAL_FAIL } from "../constants/action-type";
   const baseURL = "http://127.0.0.1:3001"
 
-  export const importMeal = (url) => { 
-    debugger;
+  export const importMeal = (meal) => { 
     return(dispatch) => {
       let configObj = {
         method: "POST",
@@ -10,7 +9,7 @@ import { IMPORT_MEAL_REQUEST, IMPORT_MEAL_SUCCESS, IMPORT_MEAL_FAIL, CREATE_MEAL
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: JSON.stringify(url)
+        body: JSON.stringify(meal)
 
       };
     dispatch({ type: IMPORT_MEAL_REQUEST });
