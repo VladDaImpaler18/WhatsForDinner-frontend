@@ -7,14 +7,15 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { Provider } from 'react-redux';
-import RecipeReducer from './reducers/RecipeHistoryReducer.js';
+// import RecipeReducer from './reducers/RecipeHistoryReducer.js'; //unused
+import MealReducer from './reducers/MealReducer'
 import Navbar from './components/navigation/Navbar'
-import History from './components/navigation/History'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import NewMeal from './containers/NewMeal';
 
 const store = createStore(
-  RecipeReducer,
+  MealReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
 
@@ -23,9 +24,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <>
-        <Navbar />
-        <Route exact path="/" component={ App } />
-        <Route exact path="/history" component={ History } />
+        {/* <Navbar /> */}
+        <Route exact path="/" component={ NewMeal } />
+
       </>
     </Router>
   </Provider>,

@@ -1,7 +1,7 @@
 import { IMPORT_MEAL_REQUEST, IMPORT_MEAL_SUCCESS, IMPORT_MEAL_FAIL, CREATE_MEAL_REQUEST, CREATE_MEAL_SUCCESS, CREATE_MEAL_FAIL } from "../constants/action-type";
-  const baseURL = "http://localhost:3000"
+  const baseURL = "http://127.0.0.1:3001"
 
-  const importMeal = (url) => { 
+  export const importMeal = (url) => { 
     debugger;
     return(dispatch) => {
       let configObj = {
@@ -17,14 +17,15 @@ import { IMPORT_MEAL_REQUEST, IMPORT_MEAL_SUCCESS, IMPORT_MEAL_FAIL, CREATE_MEAL
     fetch(`${baseURL}/meals/import`, configObj)
          .then(response => response.json())
          .then(mealData => {
-             dispatch({ type: IMPORT_MEAL_SUCCESS, payload: mealData })
+           console.log("Imported meal data...")
+             return dispatch({ type: IMPORT_MEAL_SUCCESS, payload: mealData })
           })
          .catch(err => dispatch({ type: IMPORT_MEAL_FAIL, payload: err })); 
     };
   }
 
-  const addMeal = (meal) => {
-    return(dispatch) => {
+  export const addMeal = (meal) => {
+    return (dispatch) => {
       let configObj = {
         method: "POST",
         headers: {
@@ -34,14 +35,16 @@ import { IMPORT_MEAL_REQUEST, IMPORT_MEAL_SUCCESS, IMPORT_MEAL_FAIL, CREATE_MEAL
         body: JSON.stringify(meal)
       };
       dispatch( { type: CREATE_MEAL_REQUEST });
-      fetch(`${baseURL}/meals`, configObj)
+      fetch(`${baseURL}/meals/new`, configObj)
         .then(response => response.json())
         .then(mealData => {
-          dispatch({ type: CREATE_MEAL_SUCCESS, payload: mealData })
+          console.log("Meal added...")
+          return dispatch({ type: CREATE_MEAL_SUCCESS, payload: mealData })
         })
         .catch(err => dispatch({ type: CREATE_MEAL_FAIL, payload: err }));
     };
   }
+  
 
   //selectMeal
   
