@@ -17,6 +17,7 @@ import { IMPORT_MEAL_REQUEST, IMPORT_MEAL_SUCCESS, IMPORT_MEAL_FAIL, CREATE_MEAL
     fetch(`${baseURL}/meals/import`, configObj)
          .then(response => response.json())
          .then(mealData => {
+           console.log("Imported meal data...")
              return dispatch({ type: IMPORT_MEAL_SUCCESS, payload: mealData })
           })
          .catch(err => dispatch({ type: IMPORT_MEAL_FAIL, payload: err })); 
@@ -24,7 +25,7 @@ import { IMPORT_MEAL_REQUEST, IMPORT_MEAL_SUCCESS, IMPORT_MEAL_FAIL, CREATE_MEAL
   }
 
   export const addMeal = (meal) => {
-    (dispatch) => {
+    return (dispatch) => {
       let configObj = {
         method: "POST",
         headers: {
@@ -33,12 +34,11 @@ import { IMPORT_MEAL_REQUEST, IMPORT_MEAL_SUCCESS, IMPORT_MEAL_FAIL, CREATE_MEAL
         },
         body: JSON.stringify(meal)
       };
-      debugger
       dispatch( { type: CREATE_MEAL_REQUEST });
       fetch(`${baseURL}/meals/new`, configObj)
         .then(response => response.json())
         .then(mealData => {
-            debugger
+          console.log("Meal added...")
           return dispatch({ type: CREATE_MEAL_SUCCESS, payload: mealData })
         })
         .catch(err => dispatch({ type: CREATE_MEAL_FAIL, payload: err }));
