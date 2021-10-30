@@ -24,18 +24,16 @@ function NewMeal() {
         dispatch(addMeal(meal))
     }
 
-    const handleImport = (url) => {
+    const handleImport = (meal) => {
         //do import stuff
-        console.log("Importing...")
-        debugger
-        dispatch(importMeal(url))
+        dispatch(importMeal(meal))
 
     }
 
 
     return (
         <div>
-            <ImportForm hanadleImport={handleImport} />
+            <ImportForm handleImport={handleImport} />
             <br/>
             <MealForm meal={meal} handleSubmit={handleSubmit} />
             
