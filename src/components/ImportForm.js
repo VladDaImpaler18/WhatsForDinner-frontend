@@ -5,7 +5,9 @@ function ImportForm(props) {
 
     const fetchData = (e) =>{
         e.preventDefault()
-        props.handleImport(url)
+        let meal = {}
+        meal.source = url
+        props.handleImport(meal)
     }
     return (
         <form onSubmit={fetchData}>
