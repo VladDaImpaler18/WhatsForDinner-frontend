@@ -1,27 +1,26 @@
-import React, {useState} from 'react'
-
-
+import React, {useEffect, useState} from 'react'
+import {useSelector} from 'react-redux'
+//TODO: Div to Display error messages
 function MealForm(props){
-//props.meal (import optional), props.handleSubmit
+//props.meal, props.handleSubmit
+    const meal = useSelector(state => state.meal)
 
 /*  -- Internal Default State --  */
-    const [title, setTitle] = useState('')
-    const [category, setCategory] = useState('')
-    const [ingredients, setIngredients] = useState(['','',''])
-    const [instructions, setInstructions] = useState(['','',''])
-    const [tags, setTags] = useState([''])
-    const [source, setSource] = useState('')
+    const [title, setTitle] = useState(props.meal.title)
+    const [category, setCategory] = useState(props.meal.category)
+    const [ingredients, setIngredients] = useState(props.meal.ingredients)
+    const [instructions, setInstructions] = useState(props.meal.instructions)
+    const [tags, setTags] = useState(props.meal.tags)
+    const [source, setSource] = useState(props.meal.source)
 /*  -------------------  */
-/*  -- Imported Meal (optional) --  */
-    if(!!props.meal.title){
-        setTitle(props.meal.title);
-        setCategory(props.meal.category);
-        setIngredients(props.meal.ingredients);
-        setInstructions(props.meal.instructions);
-        setTags(props.meal.tags);
-        setSource(props.meal.source);
-    }
-/*  -------------------  */
+    useEffect(() => {
+        setTitle(meal.title)
+        setCategory(meal.category)
+        setIngredients(meal.ingredients)
+        setInstructions(meal.instructions)
+        setTags(meal.tags)
+        setSource(meal.source)
+    }, [meal])
 
     const submit = (e) => {
         e.preventDefault()
