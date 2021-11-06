@@ -5,8 +5,23 @@ function MealForm(props){
 //props.meal, props.handleSubmit
     const meal = useSelector(state => state.meal)
 
+    const styles = StyleSheet.create({
+        container: {
+          paddingTop: 50,
+        },
+        tinyLogo: {
+          width: 50,
+          height: 50,
+        },
+        logo: {
+          width: 66,
+          height: 58,
+        },
+      });
+
 /*  -- Internal Default State --  */
     const [title, setTitle] = useState(props.meal.title)
+    const [image, setImage] = useState(props,meal.image)
     const [category, setCategory] = useState(props.meal.category)
     const [ingredients, setIngredients] = useState(props.meal.ingredients)
     const [instructions, setInstructions] = useState(props.meal.instructions)
@@ -15,6 +30,7 @@ function MealForm(props){
 /*  -------------------  */
     useEffect(() => {
         setTitle(meal.title)
+        setImage(meal.image)
         setCategory(meal.category)
         setIngredients(meal.ingredients)
         setInstructions(meal.instructions)
@@ -86,18 +102,40 @@ function MealForm(props){
         }
     }
 
+
+
     return(
         <form onSubmit={submit}>
+            <Image
+                style={styles}
+                source={image}
+            />
             <label> Title </label>
-            <input type='text' name="title" value={title} onChange={ (e) => setTitle(e.target.value) } />
+            <input
+                type='text'
+                name="title"
+                value={title}
+                onChange={ (e) => setTitle(e.target.value) }
+            />
             <br/>
             <label> Category:  </label>
-            <input type='text' name="category" value={category} onChange={ (e) => setCategory(e.target.value) }/>
+            <input
+                type='text'
+                name="category"
+                value={category}
+                onChange={ (e) => setCategory(e.target.value) }
+            />
             <br/>
             <label> Ingredients: </label>
             <div name="ingredients">
                 {ingredients.map( (ingredient, i) => 
-                <input type='text' name={`ingredients[${i}]`} key={`ingredients[${i}]`} value={ingredient} onChange={ handleOnChange }/>
+                <input
+                    type='text'
+                    name={`ingredients[${i}]`}
+                    key={`ingredients[${i}]`}
+                    value={ingredient}
+                    onChange={ handleOnChange }
+                />
                 )}
             <button type="button" name="add ingredients" onClick={handleOnClick}> (+) Add Ingredient </button>
             </div>
@@ -105,7 +143,12 @@ function MealForm(props){
             <label> Instructions: </label>
             <div name="instructions">
                 {instructions.map( (instruction, i) =>
-                <input type='text' name={`instructions[${i}]`} value={instruction} onChange={ handleOnChange } />
+                <input
+                    type='text'
+                    name={`instructions[${i}]`}
+                    value={instruction}
+                    onChange={ handleOnChange }
+                />
                 )}
             <button type="button" name="add instructions" onClick={handleOnClick}> (+) Add Instructions </button>
             </div>
