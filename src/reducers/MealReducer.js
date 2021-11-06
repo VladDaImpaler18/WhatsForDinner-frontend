@@ -1,5 +1,5 @@
 import { IMPORT_MEAL_REQUEST, IMPORT_MEAL_SUCCESS, IMPORT_MEAL_FAIL, CREATE_MEAL_REQUEST, CREATE_MEAL_SUCCESS, CREATE_MEAL_FAIL } from "../constants/action-type";
-let meal = {title: '',  category: '', ingredients:[], instructions: [], tags: [], source: ''}
+let meal = {title: '',  category: '', ingredients:['','',''], instructions: ['','',''], tags: [''], source: ''}
 let err = ''
 const MealReducer = (state={ meal, loading: false, err }, action) =>{
     switch (action.type) {
