@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
+import FileUploader from './FileUploader';
 //TODO: Div to Display error messages
 function MealForm(props){
 //props.meal, props.handleSubmit
@@ -18,7 +19,8 @@ function MealForm(props){
           height: 58,
         },
       });
-
+    
+    const [selectedFile, setSelectedFile] = useState(null);
 /*  -- Internal Default State --  */
     const [title, setTitle] = useState(props.meal.title)
     const [image, setImage] = useState(props,meal.image)
@@ -40,7 +42,7 @@ function MealForm(props){
 
     const submit = (e) => {
         e.preventDefault()
-        let meal = {title, category, ingredients, instructions, tags, source}
+        let meal = {title, image, category, ingredients, instructions, tags, source}
         props.handleSubmit(meal)
     }
     const handleOnClick = (e) => {
@@ -106,10 +108,20 @@ function MealForm(props){
 
     return(
         <form onSubmit={submit}>
-            <Image
+            <input
+                type="file"
+                value={selectedFile}
+                onChange={(e) => setSelectedFile(e.target.files[0])}
+            />
+            {/*
+                !!image ? 
+                <input type="file"> </input>
+                :
+                <Image
                 style={styles}
                 source={image}
-            />
+                />
+            */}
             <label> Title </label>
             <input
                 type='text'
