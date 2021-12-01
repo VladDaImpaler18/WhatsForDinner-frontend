@@ -6,19 +6,19 @@ function MealForm(props){
 //props.meal, props.handleSubmit
     const meal = useSelector(state => state.meal)
 
-    const styles = StyleSheet.create({
-        container: {
-          paddingTop: 50,
-        },
-        tinyLogo: {
-          width: 50,
-          height: 50,
-        },
-        logo: {
-          width: 66,
-          height: 58,
-        },
-      });
+    // const styles = StyleSheet.create({
+    //     container: {
+    //       paddingTop: 50,
+    //     },
+    //     tinyLogo: {
+    //       width: 50,
+    //       height: 50,
+    //     },
+    //     logo: {
+    //       width: 66,
+    //       height: 58,
+    //     },
+    //   });
     
     const [selectedFile, setSelectedFile] = useState(null);
 /*  -- Internal Default State --  */
@@ -108,12 +108,12 @@ function MealForm(props){
 
     return(
         <form onSubmit={submit}>
+            {/*
             <input
                 type="file"
                 value={selectedFile}
                 onChange={(e) => setSelectedFile(e.target.files[0])}
             />
-            {/*
                 !!image ? 
                 <input type="file"> </input>
                 :
@@ -122,6 +122,7 @@ function MealForm(props){
                 source={image}
                 />
             */}
+            <FileUploader onFileSelect={(file)=>setSelectedFile(file)} />
             <label> Title </label>
             <input
                 type='text'

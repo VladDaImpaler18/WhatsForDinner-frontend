@@ -33,6 +33,13 @@ import { IMPORT_MEAL_REQUEST, IMPORT_MEAL_SUCCESS, IMPORT_MEAL_FAIL, CREATE_MEAL
         },
         body: JSON.stringify(meal)
       };
+      //form data for image approach
+      let data = new FormData();
+      debugger
+      let otherConfigObj = {
+        method: "POST",
+        body: data
+      }
       dispatch( { type: CREATE_MEAL_REQUEST });
       fetch(`${baseURL}/meals/new`, configObj)
         .then(response => response.json())

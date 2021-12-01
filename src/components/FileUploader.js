@@ -5,8 +5,9 @@ const FileUploader = ({onFileSelect}) =>{
 
     const handleFileInput = (e) => {
         //handle validations?
-        debugger
-        onFileSelect(e.target.files[0])
+        const file= e.target.files[0]
+        onFileSelect(file)
+
     }
     // https://www.pluralsight.com/guides/how-to-use-a-simple-form-submit-with-files-in-react
     return (
