@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 import FileUploader from './FileUploader';
 //TODO: Div to Display error messages
+//https://javascript.info/formdata
 function MealForm(props){
 //props.meal, props.handleSubmit
     const meal = useSelector(state => state.meal)
@@ -141,7 +142,8 @@ function MealForm(props){
             <br/>
             <label> Ingredients: </label>
             <div name="ingredients">
-                {ingredients.map( (ingredient, i) => 
+                {
+                ingredients.map( (ingredient, i) => 
                 <input
                     type='text'
                     name={`ingredients[${i}]`}
